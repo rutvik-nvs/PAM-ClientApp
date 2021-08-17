@@ -1,5 +1,5 @@
 {
-        Input: [<#assign List = body><#list List as listItem>
+        "Input": [<#assign List = body><#list List as listItem>
              {
                 "DOB": "${listItem.dom}",
                 "hasLicense?": ${listItem.haslicense?c},
