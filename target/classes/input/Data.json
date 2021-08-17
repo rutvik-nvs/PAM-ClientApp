@@ -1,0 +1,22 @@
+[
+  {
+    "DOM": "01/01/1970",
+    "hasLicense?": true,
+    "isLicenseValid?": true
+  },
+  {
+    "DOM": "01/01/1970",
+    "hasLicense?": false,
+    "isLicenseValid?": true
+  },
+  {
+    "DOM": "01/01/1970",
+    "hasLicense?": true,
+    "isLicenseValid?": false
+  },
+  {
+    "DOM": "01/01/1970",
+    "hasLicense?": false,
+    "isLicenseValid?": false
+  }
+]
