@@ -1,6 +1,6 @@
 # PAM-ClientApp
 
-The client application contains 4 major routes which are configured as following:
+The client application contains 3 major routes which are configured as following:
 
 ### 1. Kafka Consumer
 

@@ -18,10 +18,10 @@ public class DemoApplicationRouteBuilder extends RouteBuilder {
     public static final String MODEL_NAME = "SampleDMN";
 
     public static final String TARGET_WITH_AUTH_PAM = "http://localhost:8080" +
-            "/kie-server/services/rest/server/containers/itorders_1.0.0-SNAPSHOT/processes/itorders-data.place-order/instances" +
+            "/kie-server/services/rest/server/containers/Processes_1.0.0-SNAPSHOT/processes/Processes.Process/instances" +
             "?authMethod=Basic&authUsername=kieserver&authPassword=kieserver1!&bridgeEndpoint=true";
 
-    public static final String SAMPLE_PROCESS_BODY = "{\"age\": 25,\"person\": {\"Person\": {\"name\": \"john\"}}}";
+    public static final String SAMPLE_PROCESS_BODY = "{\"variables\": { \"caseFile_hwSpec\": \"org.jbpm.document.Document\",\"CaseId\": \"String\",\"caseFile_orderInfo\": \"String\",\"Requestor\": \"String\",\"caseFile_ordered\": \"Boolean\" } }";
 
     DataSource datasource = setupDataSource();
 
@@ -44,8 +44,8 @@ public class DemoApplicationRouteBuilder extends RouteBuilder {
                 .to("direct:postgreSQL");
 
         // Kafka Route
-        from("kafka:kafka-sample-topic?brokers=localhost:9092")
-                .log("\n${body}")
+        from("kafka:baseTopic?brokers=localhost:9092")
+                .log("${body}")
                 .to("mock:kafkaResponse");
 
         getContext().getRegistry().bind("datasource", datasource);
@@ -76,7 +76,7 @@ public class DemoApplicationRouteBuilder extends RouteBuilder {
                     .setHeader("Accept", constant("application/json"))
                     .setHeader(Exchange.HTTP_METHOD, constant("POST"))
                     .removeHeader(Exchange.HTTP_PATH)
-                .setBody(simple(SAMPLE_PROCESS_BODY))
+                .setBody(simple("{}"))
             .to(TARGET_WITH_AUTH_PAM)
             .log("${body}")
             .to("mock:response");
